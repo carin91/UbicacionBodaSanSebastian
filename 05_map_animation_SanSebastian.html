@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Ubicación boda Lina y Camilo</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+  body { margin: 0; padding: 0; }
+  #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+.map-overlay {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+}
+ 
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="map-overlay top">
+  <button style="font-size: 2em" onclick="move()">
+    ¿Cómo puedes llegar a nuestra boda?
+  </button>
+</div>
+ 
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2FyaW45MSIsImEiOiJjbGx0eGlkZmwwdGhoM2RxZmdhMmJtemlkIn0.7FSnLTQ1lWq6sNxXJ6ja3Q';
+
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-74.1981993,4.7905026],
+      zoom: 11
+  });
+ 
+var marker = new mapboxgl.Marker()
+    .setLngLat([-74.2352404,4.8665233])
+    .addTo(map);
+
+const busStops = [
+    [-74.1265587,4.728488], 
+    [-74.1385577, 4.7424241],
+    [-74.1521717, 4.7560221],
+    [-74.1823952, 4.7782124],
+    [-74.1981993,4.7905026],
+    [-74.225152,4.8166697],
+    [-74.2384502,4.8260381],
+    [-74.2638935,4.8437811],
+    [-74.2587229,4.8534745],
+    [-74.2352404,4.8665233]
+];
+
+let counter = 0;
+function move(){
+  setTimeout(()=>{
+    if (counter >= busStops.length) return;
+    marker.setLngLat(busStops[counter]);
+    counter++;
+    move();
+  },1000); 
+}
+
+</script>
+ 
+</body>
+</html>
