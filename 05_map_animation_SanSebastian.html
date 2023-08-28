@@ -22,8 +22,12 @@
 <div id="map"></div>
 
 <div class="map-overlay top">
-  <button style="font-size: 2em" onclick="move()">
+  <button style="font-size: 1em" onclick="move()">
     ¿Cómo puedes llegar a nuestra boda?
+  </button>
+
+  <button style="font-size: 1em" onclick="reset()">
+    Vuelve a empezar
   </button>
 </div>
  
@@ -64,6 +68,9 @@ function move(){
   },1000); 
 }
 
+function reset(){
+  marker.setLngLat(busStops[0]);
+}
 </script>
  
 </body>
